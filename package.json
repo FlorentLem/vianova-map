@@ -14,11 +14,14 @@
   "license": "MIT",
   "dependencies": {
     "@babel/runtime": "^7.11.2",
+    "axios": "^0.21.1",
     "babel-core": "^6.26.3",
+    "mapbox-gl": "^2.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "sass": "^1.32.4"
   },
   "browserslist": [
     "since 2017-06"

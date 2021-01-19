@@ -1,0 +1,13 @@
+.map {
+  // container style for the map, taking the entire page
+  &__globalContainer {
+    width: 100%;
+    min-height: 100vh;
+    cursor: grabbing;
+    outline: none;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+}
