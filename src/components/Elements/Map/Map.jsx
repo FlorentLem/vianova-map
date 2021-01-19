@@ -27,6 +27,7 @@ class Map extends Component {
     const { mapContainer } = this;
 
     // Generating a new map with the mapboxgl.Map method where we give the style, the container of the map as well as the state values
+    // eslint-disable-next-line no-unused-vars
     const map = new mapboxgl.Map({
       container: mapContainer,
       style: 'mapbox://styles/florentlem/ckk45dsav4tov17nl6ecgboqu',
