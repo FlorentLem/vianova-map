@@ -39,7 +39,7 @@ class Map extends Component {
     });
 
     // Creating district layer with the geojson file as a source
-    map.on('load', function () {
+    map.on('load', () => {
       map.addSource('new york', {
         type: 'geojson',
         data: districtNY,
