@@ -6,11 +6,17 @@ import './Map.scss';
 // Import mapboxgl library
 import mapboxgl from 'mapbox-gl';
 
+// Import components
+import DashboardData from '../Dashboard/DashboardData';
+import DashboardWelcome from '../Dashboard/DashboardWelcome';
+import VianovaLogo from '../VianovaLogo/VianovaLogo';
+
 // Import Geojson data to display
 import districtNY from './data/districtNewYork.geojson';
 import marker from './assets/markerStation.png';
 
 // Providing token to generate the map
+let map;
 mapboxgl.accessToken =
   'pk.eyJ1IjoiZmxvcmVudGxlbSIsImEiOiJja2hveDNuYzcxNWY5MndteDM2djE3NnlxIn0.UuP-JCIEimNyvaSefaRr9A';
 
@@ -25,33 +31,41 @@ class Map extends Component {
     };
   }
 
-  // ComponentDidMount for generating the map when loading the page
+  // ComponentDidUpdate for generating the map when loading the page
   componentDidUpdate() {
     // Destructuring usefull items
-    const { stationList, setSelectedMarker } = this.props;
+    const {
+      stationList,
+      setSelectedMarker,
+      generateMap,
+      setGenerateMap,
+    } = this.props;
     const { lat, lng, zooom } = this.state;
     const { mapContainer } = this;
 
     // Generating a new map with the mapboxgl.Map method where we give the style, the container of the map as well as the state values
-    const map = new mapboxgl.Map({
-      container: mapContainer,
-      style: 'mapbox://styles/florentlem/ckk45dsav4tov17nl6ecgboqu',
-      center: [lng, lat],
-      zoom: zooom,
-      attributionControl: false,
-    });
+    if (generateMap) {
+      map = new mapboxgl.Map({
+        container: mapContainer,
+        style: 'mapbox://styles/florentlem/ckk45dsav4tov17nl6ecgboqu',
+        center: [lng, lat],
+        zoom: zooom,
+        attributionControl: false,
+      });
 
-    // Adding Geolocalisation and Navigation Controls to the map
-    map.addControl(
-      new mapboxgl.GeolocateControl({
-        positionOptions: {
-          enableHighAccuracy: false,
-        },
-        trackUserLocation: true,
-        fitBoundsOptions: { maxZoom: 8 },
-      })
-    );
-    map.addControl(new mapboxgl.NavigationControl());
+      // Adding Geolocalisation and Navigation Controls to the map
+      map.addControl(
+        new mapboxgl.GeolocateControl({
+          positionOptions: {
+            enableHighAccuracy: false,
+          },
+          trackUserLocation: true,
+          fitBoundsOptions: { maxZoom: 8 },
+        })
+      );
+      map.addControl(new mapboxgl.NavigationControl());
+      setGenerateMap();
+    }
 
     // Creating district layer with the geojson file as a source
     map.on('load', () => {
@@ -73,6 +87,7 @@ class Map extends Component {
       });
     });
 
+    // Creating array for generating goejson for the markers
     const coord = stationList.map((el, index) => {
       return {
         type: 'Feature',
@@ -87,6 +102,7 @@ class Map extends Component {
       };
     });
 
+    // Placing markers on the map
     map.on('load', () => {
       map.loadImage(marker, (error, image) => {
         if (error) throw error;
@@ -113,26 +129,32 @@ class Map extends Component {
         map.on('click', 'points', (e) => {
           const coordinates = e.features[0].geometry.coordinates.slice();
           const place = e.features[0].properties.location;
+          const idd = e.features[0].properties.id;
 
+          setSelectedMarker(idd);
           new mapboxgl.Popup().setLngLat(coordinates).setHTML(place).addTo(map);
           map.flyTo({
             center: e.features[0].geometry.coordinates,
             zoom: 17,
             speed: 1,
           });
-          setSelectedMarker(e.features[0].properties.id);
         });
       });
     });
   }
 
   render() {
+    const { selectedMarker } = this.props;
     return (
       // assigning the container for the map to generate
-      <div
-        ref={(el) => (this.mapContainer = el)}
-        className="map__globalContainer"
-      />
+      <div>
+        {selectedMarker === null ? <DashboardWelcome /> : <DashboardData />}
+        <div
+          ref={(el) => (this.mapContainer = el)}
+          className="map__globalContainer"
+        />
+        <VianovaLogo />
+      </div>
     );
   }
 }
