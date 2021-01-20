@@ -1,0 +1,247 @@
+.dashboardWelcome {
+  &__globalContainer {
+    padding: 20px;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    width: 21%;
+    position: absolute;
+    z-index: 5000;
+    background-color: #2c2c2c94;
+    backdrop-filter: blur(4px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    overflow-y: auto;
+  }
+  &__titleContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &__title {
+    margin: 0 0 10px 0;
+    text-align: center;
+    color: white;
+    font-weight: 500;
+    font-size: 36px;
+  }
+  &__picture {
+    background-position: center;
+    border-radius: 20px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 350px;
+    height: 250px;
+  }
+  &__mainContainer {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    p {
+      margin-top: 30px;
+      text-align: center;
+      color: white;
+      font-size: 25px;
+      font-weight: 500;
+    }
+  }
+}
+
+.dashboardData {
+  &__globalContainer {
+    padding: 20px;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    width: 21%;
+    position: absolute;
+    z-index: 5000;
+    background-color: #2c2c2c94;
+    backdrop-filter: blur(4px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow-y: auto;
+
+    button {
+      position: absolute;
+      left: 0;
+      top: 0;
+      margin: 10px 0 0 10px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: none;
+      outline-width: 0;
+      padding: 5px;
+      color: #161b4b;
+      border-radius: 50%;
+      font-size: 20px;
+    }
+  }
+  &__titleContainer {
+    margin-top: 10px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &__title {
+    display: flex;
+    align-items: center;
+    height: 80px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: white;
+    font-weight: 500;
+    font-size: 36px;
+  }
+  &__picture {
+    background-position: center;
+    border-radius: 20px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 300px;
+    height: 200px;
+  }
+  &__line {
+    margin-top: 50px;
+    width: 95%;
+    height: 1px;
+    background-color: white;
+  }
+  &__statusContainer {
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h2 {
+      text-align: center;
+      color: white;
+      font-weight: 400;
+      font-size: 30px;
+    }
+  }
+  &__dotGreen {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background-color: green;
+  }
+  &__dotRed {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background-color: red;
+  }
+  &__status {
+    margin-top: 20px;
+    width: 50%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    p {
+      color: white;
+      font-size: 30px;
+      font-weight: 400;
+    }
+  }
+  &__bikeContainer {
+    margin-top: 20px;
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    h3 {
+      text-align: center;
+      color: white;
+      font-weight: 400;
+      font-size: 28px;
+    }
+  }
+  &__bike {
+    margin-top: 20px;
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+
+    p {
+      display: flex;
+      justify-content: space-evenly;
+      width: 30%;
+      align-items: center;
+      color: white;
+      font-size: 30px;
+    }
+  }
+  &__capacityContainer {
+    margin-top: 20px;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    h3 {
+      text-align: center;
+      color: white;
+      font-weight: 400;
+      font-size: 28px;
+    }
+  }
+  &__rentalContainer {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    h3 {
+      text-align: center;
+      color: white;
+      font-weight: 400;
+      font-size: 28px;
+    }
+  }
+
+  &__rentalGlobal {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    width: 60%;
+    align-items: center;
+    span {
+      text-align: center;
+      color: white;
+      font-size: 30px;
+    }
+  }
+
+  &__buttonContainer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 70px;
+      width: 80%;
+      background-color: #fff;
+      color: #161b4b;
+      text-align: center;
+      font-size: 26px;
+      border-radius: 10px;
+    }
+  }
+}
