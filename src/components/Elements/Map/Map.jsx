@@ -33,7 +33,6 @@ class Map extends Component {
 
   // ComponentDidUpdate for generating the map when loading the page
   componentDidUpdate() {
-    // Destructuring usefull items
     const {
       stationList,
       setSelectedMarker,
@@ -135,7 +134,7 @@ class Map extends Component {
           new mapboxgl.Popup().setLngLat(coordinates).setHTML(place).addTo(map);
           map.flyTo({
             center: e.features[0].geometry.coordinates,
-            zoom: 17,
+            zoom: 15,
             speed: 1,
           });
         });
@@ -144,11 +143,18 @@ class Map extends Component {
   }
 
   render() {
-    const { selectedMarker } = this.props;
+    const { selectedStation, deselectMarker } = this.props;
     return (
       // assigning the container for the map to generate
       <div>
-        {selectedMarker === null ? <DashboardWelcome /> : <DashboardData />}
+        {selectedStation === null ? (
+          <DashboardWelcome />
+        ) : (
+          <DashboardData
+            selectedStation={selectedStation}
+            deselectMarker={deselectMarker}
+          />
+        )}
         <div
           ref={(el) => (this.mapContainer = el)}
           className="map__globalContainer"
