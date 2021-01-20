@@ -1,7 +1,5 @@
-/* eslint-disable react/no-unused-state */
 import React from 'react';
 import axios from 'axios';
-// import stationList from '../../Elements/Map/data/stationsList.json';
 
 // Import components and stylesheet //
 import Map from '../../Elements/Map/Map';
