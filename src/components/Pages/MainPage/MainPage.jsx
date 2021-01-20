@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-state */
 import React from 'react';
 // import axios from 'axios';
 import stationList from '../../Elements/Map/data/stationsList.json';

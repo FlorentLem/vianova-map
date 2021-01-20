@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-return-assign */
 import React, { Component } from 'react';
 import './Map.scss';
