@@ -16,13 +16,13 @@ const DashboardWelcome = () => {
         />
       </div>
       <div className="dashboardWelcome__mainContainer">
-        <p>This is a map that displays many bikes stations in New York City!</p>
+        <p>This is a map that displays many bikes stations in New York !</p>
         <p>You can use your mouse to drag the map and zoom with the scroll. </p>
         <p>
-          If a point is interesting you can just click on it and data will
-          display here !
+          If a station is interesting you can just click on it and all the
+          informations about the station will be displayed here !
         </p>
-        <p>Happy Biking !</p>
+        <p>Happy Riding !</p>
       </div>
     </div>
   );

@@ -12,13 +12,14 @@ class MainPage extends React.Component {
     super();
     // State for the markers and the selected marker
     this.state = {
-      selectedMarker: null,
-      marker: [],
+      selectedStation: null,
+      stationList: [],
       stationStatus: [],
       generateMap: true,
     };
     this.setSelectedMarker = this.setSelectedMarker.bind(this);
     this.setGenerateMap = this.setGenerateMap.bind(this);
+    this.deselectMarker = this.deselectMarker.bind(this);
   }
 
   // Retrieving data from the API
@@ -26,7 +27,7 @@ class MainPage extends React.Component {
     const res1 = await axios.get(
       'https://gbfs.citibikenyc.com/gbfs/en/station_information.json'
     );
-    this.setState({ marker: res1.data.data.stations });
+    this.setState({ stationList: res1.data.data.stations });
     const res2 = await axios.get(
       'https://gbfs.citibikenyc.com/gbfs/en/station_status.json'
     );
@@ -35,11 +36,13 @@ class MainPage extends React.Component {
 
   // When used select the marker data of the index paramaters
   setSelectedMarker(index) {
-    const { marker } = this.state;
+    const { stationList, stationStatus } = this.state;
     this.setState({
-      selectedMarker: {
-        object: marker[index],
-        id: index,
+      selectedStation: {
+        station: stationList[index],
+        status: stationStatus.filter(
+          (el) => el.station_id === stationList[index].station_id
+        ),
       },
     });
   }
@@ -50,15 +53,21 @@ class MainPage extends React.Component {
     this.setState({ generateMap: !generateMap });
   }
 
+  // when used set the selectedStation to null
+  deselectMarker() {
+    this.setState({ selectedStation: null });
+  }
+
   render() {
-    const { marker, selectedMarker, generateMap } = this.state;
-    const { setSelectedMarker, setGenerateMap } = this;
+    const { stationList, selectedStation, generateMap } = this.state;
+    const { setSelectedMarker, setGenerateMap, deselectMarker } = this;
     return (
       <Map
         generateMap={generateMap}
         setGenerateMap={setGenerateMap}
-        selectedMarker={selectedMarker}
-        stationList={marker}
+        deselectMarker={deselectMarker}
+        selectedStation={selectedStation}
+        stationList={stationList}
         setSelectedMarker={setSelectedMarker}
       />
     );
