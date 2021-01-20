@@ -26,7 +26,7 @@ class Map extends Component {
   }
 
   // ComponentDidMount for generating the map when loading the page
-  componentDidMount() {
+  componentDidUpdate() {
     // Destructuring usefull items
     const { stationList, setSelectedMarker } = this.props;
     const { lat, lng, zooom } = this.state;
