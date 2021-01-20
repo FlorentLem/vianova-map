@@ -13,6 +13,8 @@ import VianovaLogo from '../VianovaLogo/VianovaLogo';
 
 // Import Geojson data to display
 import districtNY from './data/districtNewYork.geojson';
+
+// Import marker asset
 import marker from './assets/markerStation.png';
 
 // Providing token to generate the map
@@ -27,7 +29,7 @@ class Map extends Component {
     this.state = {
       lat: 40.699231753990865,
       lng: -74.0483786650457,
-      zooom: 10,
+      initZoom: 10,
     };
   }
 
@@ -39,7 +41,7 @@ class Map extends Component {
       generateMap,
       setGenerateMap,
     } = this.props;
-    const { lat, lng, zooom } = this.state;
+    const { lat, lng, initZoom } = this.state;
     const { mapContainer } = this;
 
     // Generating a new map with the mapboxgl.Map method where we give the style, the container of the map as well as the state values
@@ -48,7 +50,7 @@ class Map extends Component {
         container: mapContainer,
         style: 'mapbox://styles/florentlem/ckk45dsav4tov17nl6ecgboqu',
         center: [lng, lat],
-        zoom: zooom,
+        zoom: initZoom,
         attributionControl: false,
       });
 
@@ -128,9 +130,8 @@ class Map extends Component {
         map.on('click', 'points', (e) => {
           const coordinates = e.features[0].geometry.coordinates.slice();
           const place = e.features[0].properties.location;
-          const idd = e.features[0].properties.id;
 
-          setSelectedMarker(idd);
+          setSelectedMarker(e.features[0].properties.id);
           new mapboxgl.Popup().setLngLat(coordinates).setHTML(place).addTo(map);
           map.flyTo({
             center: e.features[0].geometry.coordinates,
@@ -145,7 +146,6 @@ class Map extends Component {
   render() {
     const { selectedStation, deselectMarker } = this.props;
     return (
-      // assigning the container for the map to generate
       <div>
         {selectedStation === null ? (
           <DashboardWelcome />
