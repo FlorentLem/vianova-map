@@ -1,10 +1,8 @@
-/* eslint-disable react/no-unused-state */
 import React from 'react';
 import axios from 'axios';
-// import stationList from '../../Elements/Map/data/stationsList.json';
 
 // Import components and stylesheet //
-import Map from '../../Elements/Map/Map';
+import MapGenerate from '../../Elements/Map/Map';
 import './MainPage.scss';
 
 class MainPage extends React.Component {
@@ -59,12 +57,10 @@ class MainPage extends React.Component {
   }
 
   render() {
-    const { stationList, selectedStation, generateMap } = this.state;
-    const { setSelectedMarker, setGenerateMap, deselectMarker } = this;
+    const { stationList, selectedStation } = this.state;
+    const { setSelectedMarker, deselectMarker } = this;
     return (
-      <Map
-        generateMap={generateMap}
-        setGenerateMap={setGenerateMap}
+      <MapGenerate
         deselectMarker={deselectMarker}
         selectedStation={selectedStation}
         stationList={stationList}
